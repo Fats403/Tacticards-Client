@@ -1,0 +1,167 @@
+[gd_scene load_steps=13 format=3 uid="uid://8nfw8ly1pxik"]
+
+[ext_resource type="Script" path="res://scripts/lobby.gd" id="2_vw6rg"]
+[ext_resource type="Texture2D" uid="uid://cdf2gynardwvo" path="res://pixel-ui/panel_Example1.png" id="2_yt04e"]
+[ext_resource type="Texture2D" uid="uid://bnjoldu8rlyh3" path="res://pixel-ui/UI_Flat_Select_01a1.png" id="3_wn6x4"]
+[ext_resource type="Texture2D" uid="uid://c83y13vcxbrx" path="res://pixel-ui/checkbox_example.png" id="4_3cncy"]
+[ext_resource type="Texture2D" uid="uid://d2v2y75xyrgej" path="res://pixel-ui/checkbox_check_example.png" id="5_t115p"]
+[ext_resource type="Script" path="res://ReadyButton.gd" id="6_v1xyy"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c4ii1"]
+texture = ExtResource("2_yt04e")
+texture_margin_left = 50.0
+texture_margin_top = 50.0
+texture_margin_right = 50.0
+texture_margin_bottom = 50.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n5t7q"]
+texture = ExtResource("4_3cncy")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_im81x"]
+texture = ExtResource("5_t115p")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vucr4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dja1c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ievhi"]
+
+[node name="Lobby" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("2_vw6rg")
+
+[node name="CopyLobbyIdButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 681.0
+offset_right = 53.0
+offset_bottom = 703.0
+
+[node name="LobbyIdLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 63.0
+offset_top = 680.0
+offset_right = 225.0
+offset_bottom = 703.0
+theme_override_colors/font_color = Color(0.67451, 0, 0, 1)
+
+[node name="LobbyPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 319.0
+offset_top = 151.0
+offset_right = 998.0
+offset_bottom = 522.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_c4ii1")
+
+[node name="PlayerSlot1" type="Control" parent="LobbyPanel"]
+anchors_preset = 0
+offset_left = 96.0
+offset_top = 95.0
+offset_right = 199.0
+offset_bottom = 278.0
+
+[node name="PlayerPictureBorder" type="Sprite2D" parent="LobbyPanel/PlayerSlot1"]
+position = Vector2(50, 30)
+scale = Vector2(1.5, 1.47)
+texture = ExtResource("3_wn6x4")
+
+[node name="PlayerAvatar" type="Sprite2D" parent="LobbyPanel/PlayerSlot1"]
+position = Vector2(50, 30)
+
+[node name="PlayerName" type="Label" parent="LobbyPanel/PlayerSlot1"]
+layout_mode = 0
+offset_left = -18.0
+offset_top = 62.0
+offset_right = 118.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="LobbyPanel/PlayerSlot1"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 99.0
+offset_right = 58.0
+offset_bottom = 118.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_n5t7q")
+theme_override_styles/hover = SubResource("StyleBoxTexture_im81x")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vucr4")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_dja1c")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ievhi")
+toggle_mode = true
+script = ExtResource("6_v1xyy")
+
+[node name="PlayerSlot2" type="Control" parent="LobbyPanel"]
+anchors_preset = 0
+offset_left = 221.0
+offset_top = 96.0
+offset_right = 324.0
+offset_bottom = 279.0
+
+[node name="PlayerPictureBorder" type="Sprite2D" parent="LobbyPanel/PlayerSlot2"]
+position = Vector2(50, 30)
+scale = Vector2(1.5, 1.47)
+texture = ExtResource("3_wn6x4")
+
+[node name="PlayerAvatar" type="Sprite2D" parent="LobbyPanel/PlayerSlot2"]
+position = Vector2(50, 30)
+
+[node name="PlayerName" type="Label" parent="LobbyPanel/PlayerSlot2"]
+layout_mode = 0
+offset_left = -18.0
+offset_top = 62.0
+offset_right = 118.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+horizontal_alignment = 1
+
+[node name="PlayerSlot3" type="Control" parent="LobbyPanel"]
+anchors_preset = 0
+offset_left = 361.0
+offset_top = 96.0
+offset_right = 464.0
+offset_bottom = 279.0
+
+[node name="PlayerPictureBorder" type="Sprite2D" parent="LobbyPanel/PlayerSlot3"]
+position = Vector2(50, 30)
+scale = Vector2(1.5, 1.47)
+texture = ExtResource("3_wn6x4")
+
+[node name="PlayerAvatar" type="Sprite2D" parent="LobbyPanel/PlayerSlot3"]
+position = Vector2(50, 30)
+
+[node name="PlayerName" type="Label" parent="LobbyPanel/PlayerSlot3"]
+layout_mode = 0
+offset_left = -18.0
+offset_top = 62.0
+offset_right = 118.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+horizontal_alignment = 1
+
+[node name="PlayerSlot4" type="Control" parent="LobbyPanel"]
+anchors_preset = 0
+offset_left = 486.0
+offset_top = 97.0
+offset_right = 589.0
+offset_bottom = 280.0
+
+[node name="PlayerPictureBorder" type="Sprite2D" parent="LobbyPanel/PlayerSlot4"]
+position = Vector2(50, 30)
+scale = Vector2(1.5, 1.47)
+texture = ExtResource("3_wn6x4")
+
+[node name="PlayerAvatar" type="Sprite2D" parent="LobbyPanel/PlayerSlot4"]
+position = Vector2(50, 30)
+
+[node name="PlayerName" type="Label" parent="LobbyPanel/PlayerSlot4"]
+layout_mode = 0
+offset_left = -18.0
+offset_top = 62.0
+offset_right = 118.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+horizontal_alignment = 1
+
+[connection signal="pressed" from="CopyLobbyIdButton" to="." method="on_pressed_copy_lobby_code"]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0m4p1rhm0ka"]
+
+[ext_resource type="Script" path="res://TileSelector.gd" id="1_8146s"]
+[ext_resource type="Texture2D" uid="uid://bxhuen6xusu2a" path="res://pixel-ui/green_tile.png" id="2_hv6ex"]
+
+[node name="TileSelector" type="Node2D"]
+script = ExtResource("1_8146s")
+
+[node name="Sprite0" type="Sprite2D" parent="."]
+position = Vector2(-8, -8)
+texture = ExtResource("2_hv6ex")
+
+[node name="Sprite1" type="Sprite2D" parent="."]
+position = Vector2(8, -8)
+texture = ExtResource("2_hv6ex")
+
+[node name="Sprite2" type="Sprite2D" parent="."]
+position = Vector2(-8, 8)
+texture = ExtResource("2_hv6ex")
+
+[node name="Sprite3" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
+texture = ExtResource("2_hv6ex")

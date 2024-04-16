@@ -1,0 +1,129 @@
+[gd_scene load_steps=14 format=3 uid="uid://csm6b5up7my2q"]
+
+[ext_resource type="Texture2D" uid="uid://cdf2gynardwvo" path="res://pixel-ui/panel_Example1.png" id="1_gwqby"]
+[ext_resource type="Script" path="res://scripts/menu.gd" id="2_83xjp"]
+[ext_resource type="Texture2D" uid="uid://c3i262lg466se" path="res://pixel-ui/UI_Flat_Button_Medium_Press_02a1.png" id="3_mdrps"]
+[ext_resource type="Texture2D" uid="uid://bj7a5cqwmi0a8" path="res://pixel-ui/UI_Flat_Button_Medium_Lock_02a4.png" id="4_a8uqx"]
+[ext_resource type="Texture2D" uid="uid://jjjygsrwxo4i" path="res://pixel-ui/UI_Flat_Textfield_01.png" id="5_2gr2h"]
+[ext_resource type="Texture2D" uid="uid://bo3fyuxak5br2" path="res://pixel-ui/UI_Flat_Button_Medium_Press_02a4.png" id="5_e88f8"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7bhca"]
+texture = ExtResource("1_gwqby")
+texture_margin_left = 50.0
+texture_margin_top = 50.0
+texture_margin_right = 50.0
+texture_margin_bottom = 50.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b5x6e"]
+texture = ExtResource("3_mdrps")
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_heib4"]
+texture = ExtResource("5_e88f8")
+texture_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yighi"]
+texture = ExtResource("4_a8uqx")
+texture_margin_top = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1atiy"]
+texture = ExtResource("3_mdrps")
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eiob7"]
+texture = ExtResource("5_2gr2h")
+texture_margin_left = 10.0
+texture_margin_right = 10.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tjqxf"]
+texture = ExtResource("5_2gr2h")
+texture_margin_left = 10.0
+texture_margin_right = 10.0
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1958.8
+offset_bottom = -1206.32
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 671.4
+offset_top = 388.16
+offset_right = 1281.4
+offset_bottom = 797.16
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_7bhca")
+script = ExtResource("2_83xjp")
+
+[node name="JoinButton" type="Button" parent="MenuPanel"]
+layout_mode = 0
+offset_left = 186.0
+offset_top = 189.0
+offset_right = 278.0
+offset_bottom = 226.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0.286275, 0.286275, 0.286275, 0.513726)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_b5x6e")
+theme_override_styles/hover = SubResource("StyleBoxTexture_heib4")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_yighi")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_1atiy")
+text = "JOIN"
+
+[node name="HostButton" type="Button" parent="MenuPanel"]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 189.0
+offset_right = 428.0
+offset_bottom = 226.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0.286275, 0.286275, 0.286275, 0.513726)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_b5x6e")
+theme_override_styles/hover = SubResource("StyleBoxTexture_heib4")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_yighi")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_1atiy")
+text = "HOST"
+
+[node name="CodeInput" type="LineEdit" parent="MenuPanel"]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 129.0
+offset_right = 476.0
+offset_bottom = 164.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 0.278431)
+theme_override_styles/normal = SubResource("StyleBoxTexture_eiob7")
+theme_override_styles/read_only = SubResource("StyleBoxTexture_tjqxf")
+placeholder_text = "Enter Lobby Code..."
+
+[node name="StatusLabel" type="Label" parent="MenuPanel"]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 253.0
+offset_right = 488.0
+offset_bottom = 276.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "LOBBY STATUS TEXT"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="MenuPanel/JoinButton" to="MenuPanel" method="on_join_pressed"]
+[connection signal="pressed" from="MenuPanel/HostButton" to="MenuPanel" method="on_host_pressed"]
