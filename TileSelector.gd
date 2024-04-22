@@ -1,27 +1,46 @@
 extends Node2D
 
-signal selector_clicked(allowed_corners)
+signal selector_released(card_id, allowed_corners)
 
 var selector_half_size = Vector2(GameData.tile_size, GameData.tile_size)
 
 var can_place = false
 var selector_corners = []
 
+var is_dragging = false
+var dragged_card_id = null
+
+func _on_start_drag(card_id):
+	dragged_card_id = card_id
+	is_dragging = true
+	pass
+
+func _on_stop_drag():
+	is_dragging = false
+	pass
+
 func _ready():
 	self.modulate = Color(1, 1, 1, 0.5)
 
 func _input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+	if event is InputEventMouseButton and self.visible:
 		var mouse_pos = get_viewport().get_mouse_position()
-		if is_mouse_within_grid(mouse_pos) and can_place:
-			update_position(mouse_pos)
-			emit_signal("selector_clicked", selector_corners)
-			return
-		self.visible = false if event.is_action_pressed("ui_cancel") else self.visible
+		if is_mouse_within_grid(mouse_pos):
+			if event.button_index == MOUSE_BUTTON_LEFT:
+				if is_dragging and can_place:
+					update_position(mouse_pos)
+					emit_signal("selector_released", dragged_card_id, selector_corners)
+					self.visible = false  # Optionally hide selector after placing
+					is_dragging = false
+				return  # Stop further processing by exiting the function
+			if event.is_action_pressed("ui_cancel"):
+				self.visible = false
+				is_dragging = false  # Ensure dragging is reset
+				return  # Stop further processing by exiting the function
 
 func _process(delta):
 	var mouse_pos = get_viewport().get_mouse_position()
-	if is_mouse_within_grid(mouse_pos):
+	if is_mouse_within_grid(mouse_pos) and is_dragging:
 		update_position(mouse_pos)
 		if GameData.tile_map.size() > 0:
 			check_tiles()

@@ -1,14 +1,89 @@
-[gd_scene load_steps=49 format=3 uid="uid://c6s00ix5dww6n"]
+[gd_scene load_steps=68 format=3 uid="uid://c6s00ix5dww6n"]
 
 [ext_resource type="Script" path="res://creeps/creep.gd" id="1_3g8lm"]
+[ext_resource type="Texture2D" uid="uid://n54fusxdl6dj" path="res://creeps/goblin/D_Attack.png" id="2_3dbci"]
 [ext_resource type="Texture2D" uid="uid://osyrf3atml22" path="res://creeps/goblin/D_Death.png" id="2_agwtf"]
 [ext_resource type="Texture2D" uid="uid://dax477s40lysx" path="res://creeps/goblin/S_Death.png" id="3_1akht"]
+[ext_resource type="Texture2D" uid="uid://ci8ymmul5wa7p" path="res://creeps/goblin/S_Attack.png" id="3_c7npj"]
+[ext_resource type="Texture2D" uid="uid://dd12kwnfb1imd" path="res://creeps/goblin/U_Attack.png" id="4_eoob4"]
 [ext_resource type="Texture2D" uid="uid://dxvrdlpfkvxel" path="res://creeps/goblin/U_Death.png" id="4_j47ym"]
 [ext_resource type="Texture2D" uid="uid://fxerwc8ds0fx" path="res://creeps/goblin/D_Walk.png" id="5_1xm3g"]
 [ext_resource type="Texture2D" uid="uid://difi7lb17yvvc" path="res://creeps/goblin/S_Walk.png" id="6_noiv1"]
 [ext_resource type="Texture2D" uid="uid://uc2mcojtvin1" path="res://creeps/goblin/U_Walk.png" id="7_yyxwx"]
 [ext_resource type="Texture2D" uid="uid://hilm54db3amh" path="res://pixel-ui/bg.png" id="8_32oc8"]
 [ext_resource type="Texture2D" uid="uid://cg1f6wkbwrks8" path="res://pixel-ui/red.png" id="9_6w4g4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpyni"]
+atlas = ExtResource("2_3dbci")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxext"]
+atlas = ExtResource("2_3dbci")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_esbdu"]
+atlas = ExtResource("2_3dbci")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmdpb"]
+atlas = ExtResource("2_3dbci")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhcdi"]
+atlas = ExtResource("2_3dbci")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lg5v"]
+atlas = ExtResource("2_3dbci")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_beysl"]
+atlas = ExtResource("3_c7npj")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpqop"]
+atlas = ExtResource("3_c7npj")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7usbq"]
+atlas = ExtResource("3_c7npj")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ljc7"]
+atlas = ExtResource("3_c7npj")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndrjc"]
+atlas = ExtResource("3_c7npj")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w55k4"]
+atlas = ExtResource("3_c7npj")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71dhh"]
+atlas = ExtResource("4_eoob4")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fq4t7"]
+atlas = ExtResource("4_eoob4")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwatc"]
+atlas = ExtResource("4_eoob4")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfdfb"]
+atlas = ExtResource("4_eoob4")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgj7a"]
+atlas = ExtResource("4_eoob4")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8saa"]
+atlas = ExtResource("4_eoob4")
+region = Rect2(240, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a5pub"]
 atlas = ExtResource("2_agwtf")
@@ -158,6 +233,75 @@ region = Rect2(240, 0, 48, 48)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_fpyni")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxext")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_esbdu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mmdpb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhcdi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8lg5v")
+}],
+"loop": true,
+"name": &"attack_d",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_beysl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpqop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7usbq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ljc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ndrjc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w55k4")
+}],
+"loop": true,
+"name": &"attack_s",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_71dhh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fq4t7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gwatc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfdfb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgj7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8saa")
+}],
+"loop": true,
+"name": &"attack_u",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_a5pub")
 }, {
 "duration": 1.0,
@@ -295,27 +439,19 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_734s3"]
-texture = ExtResource("8_32oc8")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6p0wk"]
-texture = ExtResource("9_6w4g4")
-
 [node name="Goblin" type="Node2D"]
 script = ExtResource("1_3g8lm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_rydh4")
-animation = &"death_d"
+animation = &"attack_u"
+frame_progress = 0.870237
 
-[node name="HealthBar" type="ProgressBar" parent="."]
-offset_left = -16.0
-offset_top = -23.0
-offset_right = 17.0
-offset_bottom = -15.0
-theme_override_styles/background = SubResource("StyleBoxTexture_734s3")
-theme_override_styles/fill = SubResource("StyleBoxTexture_6p0wk")
-step = 1.0
-value = 100.0
-show_percentage = false
-metadata/_edit_use_anchors_ = true
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+offset_left = -17.0
+offset_top = -22.0
+offset_right = 239.0
+offset_bottom = 26.0
+scale = Vector2(0.134194, 0.121493)
+texture_under = ExtResource("8_32oc8")
+texture_progress = ExtResource("9_6w4g4")

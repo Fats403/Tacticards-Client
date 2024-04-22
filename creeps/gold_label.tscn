@@ -1,0 +1,60 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjftk3df7dh2e"]
+
+[sub_resource type="GDScript" id="GDScript_vvujc"]
+script/source = "extends Node2D
+
+@onready var label = $Label
+@onready var anim_player = $AnimationPlayer
+
+var fade_duration = 2.0
+var move_speed = Vector2(0, -50)  # Upward movement speed
+
+func _ready():
+	assert(anim_player != null, \"AnimationPlayer is not properly initialized.\")
+	label.modulate = Color(1, 1, 0, 1)  # Set the initial color to yellow, fully opaque
+
+	# Prepare the animation
+	prepare_animation()
+
+func prepare_animation():
+	var anim = Animation.new()
+	anim.length = fade_duration
+
+	# Opacity track (fade out effect)
+	anim.add_track(Animation.TYPE_VALUE)
+	anim.track_set_path(0, \"modulate:a\")
+	anim.track_insert_key(0, 0, 1)
+	anim.track_insert_key(0, fade_duration, 0)
+
+	# Position track (move effect)
+	anim.add_track(Animation.TYPE_VALUE)
+	anim.track_set_path(1, \"position\")
+	anim.track_insert_key(1, 0, position)
+	anim.track_insert_key(1, fade_duration, position + Vector2(0, move_speed.y))
+
+  	# Use the correct method to assign the animation to your AnimationPlayer
+	anim_player.assigned_animation = anim
+	
+func start_animation():
+	anim_player.play(\"fade_and_move\")
+	anim_player.connect(\"animation_finished\", Callable(self, \"queue_free\"))
+	
+func set_text(value: int):
+	label.text = \"+%d\" % value
+
+func _process(delta):
+	position += move_speed * delta  # Continue to move the label up every frame
+"
+
+[node name="GoldLabel" type="Node2D"]
+script = SubResource("GDScript_vvujc")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 1.0
+offset_right = 25.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.972549, 0.894118, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "+1"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

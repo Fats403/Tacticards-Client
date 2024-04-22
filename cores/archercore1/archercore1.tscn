@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://cjx7xf5unqow5"]
+
+[ext_resource type="Texture2D" uid="uid://cgrwr2msqpk7d" path="res://cores/archercore1/7.png" id="1_o5luc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijfku"]
+atlas = ExtResource("1_o5luc")
+region = Rect2(0, 0, 70, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_id6ug"]
+atlas = ExtResource("1_o5luc")
+region = Rect2(70, 0, 70, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gq4t"]
+atlas = ExtResource("1_o5luc")
+region = Rect2(140, 0, 70, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itowb"]
+atlas = ExtResource("1_o5luc")
+region = Rect2(210, 0, 70, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3qlwk"]
+atlas = ExtResource("1_o5luc")
+region = Rect2(280, 0, 70, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t02vr"]
+atlas = ExtResource("1_o5luc")
+region = Rect2(350, 0, 70, 130)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_grbs5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijfku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_id6ug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1gq4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_itowb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3qlwk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t02vr")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[node name="Archercore1" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_grbs5")
+animation = &"idle"
+frame_progress = 0.448098

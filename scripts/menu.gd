@@ -86,7 +86,10 @@ func _on_lobby_joined(lobby_id: int, _permissions: int, _locked: bool, response:
 
 		set_status("Failed to join lobby. %s" % fail_reason)
 		set_ui_state(true)
-		
+
+func exit_game() -> void:
+	Global.exit_game()
+	
 func generate_code() -> String:
 	return str(randi() % 10000).pad_zeros(4)
 

@@ -2,13 +2,16 @@ extends Node
 
 var tile_size = 16
 var half_tile_size = 8
-var grid_offset_x = 180
-var grid_offset_y = 180
+var grid_offset_x = 67
+var grid_offset_y = 64
 
 # Game globals
 var grid_size
 var grid_width
 var grid_height
+
+var player
+var opponent
 
 var tile_map = []
 
@@ -24,6 +27,10 @@ enum CreepType {
 
 enum BulletType {
 	BASIC_BULLET
+}
+
+enum CardType {
+	BASIC_TOWER_CARD
 }
 
 var bullet_scene_ref = {

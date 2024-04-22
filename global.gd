@@ -39,5 +39,8 @@ func initialize_steam() -> void:
 		
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST: 
-		Steam.steamShutdown();
-		get_tree().quit()
+		exit_game()
+
+func exit_game():
+	Steam.steamShutdown();
+	get_tree().quit()

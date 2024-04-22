@@ -1,0 +1,110 @@
+[gd_scene load_steps=9 format=3 uid="uid://dd7o4hpypwa2x"]
+
+[ext_resource type="Texture2D" uid="uid://c4mwwvc66fr02" path="res://cards/backgrounds/card_bg_grey.png" id="1_a32fg"]
+[ext_resource type="Script" path="res://scripts/card.gd" id="1_ascgc"]
+[ext_resource type="Texture2D" uid="uid://bprml4oe62cle" path="res://cards/titles/title_bg.png" id="2_kmmkv"]
+[ext_resource type="Texture2D" uid="uid://xiqrluhblhww" path="res://cards/titles/image_border_tier1.png" id="3_70es0"]
+[ext_resource type="Texture2D" uid="uid://c0q1dp63eb4y2" path="res://cards/titles/description_bg.png" id="4_4vfvo"]
+[ext_resource type="Texture2D" uid="uid://ih647td5s45h" path="res://cards/titles/energy_cost_frame.png" id="5_uspf0"]
+[ext_resource type="Texture2D" uid="uid://b0eo7v48vsh23" path="res://cards/titles/gold_cost_frame.png" id="6_8vt1n"]
+
+[sub_resource type="FontVariation" id="FontVariation_xlyv1"]
+
+[node name="Card" type="Control"]
+custom_minimum_size = Vector2(100, 130)
+layout_mode = 3
+anchors_preset = 0
+offset_top = -2.0
+offset_right = 100.0
+offset_bottom = 128.0
+scale = Vector2(1.31463, 1.39851)
+mouse_filter = 1
+mouse_force_pass_scroll_events = false
+mouse_default_cursor_shape = 2
+script = ExtResource("1_ascgc")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(49.2393, 67.1451)
+texture = ExtResource("1_a32fg")
+
+[node name="DescriptionBg" type="Sprite2D" parent="."]
+position = Vector2(50.2393, 112.948)
+scale = Vector2(1, 1.0829)
+texture = ExtResource("2_kmmkv")
+
+[node name="ImageBorder" type="Sprite2D" parent="."]
+position = Vector2(49.7393, 56.6451)
+scale = Vector2(0.825581, 0.791667)
+texture = ExtResource("3_70es0")
+
+[node name="TitleBg" type="Sprite2D" parent="."]
+position = Vector2(49.2393, 11.1451)
+texture = ExtResource("4_4vfvo")
+
+[node name="EnergyCostFrame" type="Sprite2D" parent="."]
+position = Vector2(20.2393, 78.1451)
+scale = Vector2(0.656, 0.7)
+texture = ExtResource("5_uspf0")
+
+[node name="GoldCostFrame" type="Sprite2D" parent="."]
+position = Vector2(78.2393, 77.1451)
+scale = Vector2(0.679, 0.7)
+texture = ExtResource("6_8vt1n")
+
+[node name="Description" type="Label" parent="."]
+offset_left = 2.56402
+offset_top = 98.5752
+offset_right = 98.564
+offset_bottom = 127.575
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("FontVariation_xlyv1")
+theme_override_font_sizes/font_size = 9
+text = "This is a basic tower."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="EnergyCost" type="Label" parent="."]
+offset_left = 14.4527
+offset_top = 70.7896
+offset_right = 27.4527
+offset_bottom = 84.7896
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("FontVariation_xlyv1")
+theme_override_font_sizes/font_size = 10
+text = "1
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="GoldCost" type="Label" parent="."]
+offset_left = 73.0243
+offset_top = 70.7896
+offset_right = 86.0243
+offset_bottom = 84.7896
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("FontVariation_xlyv1")
+theme_override_font_sizes/font_size = 10
+text = "1
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 4.56402
+offset_top = 4.29028
+offset_right = 95.564
+offset_bottom = 18.2903
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("FontVariation_xlyv1")
+theme_override_font_sizes/font_size = 9
+text = "TEST HEADER"
+horizontal_alignment = 1
+vertical_alignment = 1
