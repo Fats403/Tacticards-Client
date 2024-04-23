@@ -22,7 +22,8 @@ enum TowerType {
 enum CreepType {
 	SLIME_CREEP,
 	BEE_CREEP,
-	GOBLIN_CREEP
+	GOBLIN_CREEP,
+	WOLF_CREEP,
 }
 
 enum BulletType {
@@ -40,7 +41,8 @@ var bullet_scene_ref = {
 var creep_scene_ref = {
 	CreepType.SLIME_CREEP: "res://creeps/slime/slime.tscn",
 	CreepType.BEE_CREEP: "res://creeps/bee/bee.tscn",
-	CreepType.GOBLIN_CREEP: "res://creeps/goblin/goblin.tscn"
+	CreepType.GOBLIN_CREEP: "res://creeps/goblin/goblin.tscn",
+	CreepType.WOLF_CREEP: "res://creeps/wolf/wolf.tscn",
 }
 
 var tower_scene_ref =  {

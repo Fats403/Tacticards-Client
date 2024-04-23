@@ -52,6 +52,7 @@ scale = Vector2(0.679, 0.7)
 texture = ExtResource("6_8vt1n")
 
 [node name="Description" type="Label" parent="."]
+layout_mode = 0
 offset_left = 2.56402
 offset_top = 98.5752
 offset_right = 98.564
@@ -66,6 +67,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="EnergyCost" type="Label" parent="."]
+layout_mode = 0
 offset_left = 14.4527
 offset_top = 70.7896
 offset_right = 27.4527
@@ -81,6 +83,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="GoldCost" type="Label" parent="."]
+layout_mode = 0
 offset_left = 73.0243
 offset_top = 70.7896
 offset_right = 86.0243

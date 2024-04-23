@@ -23,7 +23,7 @@ func update(bullet_data):
 
 func update_position(delta):
 	# Use linear interpolation to smoothly transition to the target position
-	position = position.lerp(target_position, 0.8)
+	position = position.lerp(target_position, 0.9)
 
 func _process(delta):
 	update_position(delta)
