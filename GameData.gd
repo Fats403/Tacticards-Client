@@ -34,6 +34,11 @@ enum CardType {
 	BASIC_TOWER_CARD
 }
 
+enum ActionTypes {
+	SELECTOR,
+	EFFECT
+}
+
 var bullet_scene_ref = {
 	BulletType.BASIC_BULLET: "res://towers/basic/basic_bullet.tscn",
 }

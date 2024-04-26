@@ -3,9 +3,9 @@ extends Node
 signal start_drag_card(card)
 signal stop_drag_card()
 signal request_place_card(card)
-signal request_place_effect(card)
+signal request_place_board(card, index)
 
-@onready var card_placement = $PlayerCardPlacement
+@onready var card_placement = $Board
 
 var dragged_child = null
 var drag_offset = Vector2.ZERO
@@ -14,80 +14,90 @@ var original_idx = 0
 var last_dragged_card_id = null
 var selector_activated = false
 
-var nearest_slot_index = -1
-var placed_cards = []  # Array to keep track of placed cards
-
-const SLOT_THRESHOLD = 50  # Distance threshold to consider a slot placement
 const NUM_SLOTS = 4
 var slot_size = Vector2(100, 130)
 
-func _ready():
-	for i in range(NUM_SLOTS):
-		placed_cards.append(null)  # Initialize for 4 slots, assuming 4 slots
-
 func set_player_data(data):
+	# Clear only card nodes before adding new data
+	for child in $Board.get_children():
+		if not child.name.begins_with("Slot"):
+			child.queue_free() 
+
+	# Place new cards based on data from the server
+	for i in range(data.board.size()):
+		var card_data = data.board[i]
+		if card_data:
+			var card_node = load("res://cards/card.tscn").instantiate()
+			card_node.init(card_data)
+			card_node.scale = Vector2(1, 1)
+			card_node.position = get_slot_position(i) - (card_node.size * 0.5)  # Compute position based on slot index
+			$Board.add_child(card_node)
+
+	# Update hand, deck size, discard pile size, and energy
 	for child in $Hand.get_children():
 		child.queue_free()
-		
+
 	for card in data.hand:
 		var card_node = load("res://cards/card.tscn").instantiate()
 		card_node.init(card)
-		card_node.connect("card_selected", Callable(self, "_on_card_selected"))
 		$Hand.add_child(card_node)
-	
+
 	$DeckSize.text = str(data.deck.size())
 	$DiscardSize.text = str(data.discard.size())
 	$EnergyLabel.text = str(data.energy)
-
+	
 func _on_card_selected(card) -> void:
 	pass
 
 func _on_selector_released(card_id, corners) -> void:
-	selector_activated = true
+	selector_activated = true 
 	emit_signal('request_place_card', card_id, corners)
-
+	
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed and not dragged_child:
-				# Start drag if a card is clicked
 				_attempt_start_drag(event)
 			elif not event.pressed and dragged_child:
-				# Stop drag when mouse is released
 				_check_slot_placement(event)
 				_stop_drag(event)
 	elif event is InputEventMouseMotion and dragged_child:
-		# Handle dragging
 		_handle_drag(event)
-		
+	
 	if dragged_child:
-		if dragged_child.global_position.x <= ((GameData.grid_offset_x * 2) + GameData.grid_width):
-			dragged_child.hide()
+		var is_in_game_board = dragged_child.global_position.x <= ((GameData.grid_offset_x * 2) + GameData.grid_width)
+		if dragged_child.card_data.action_type == GameData.ActionTypes.SELECTOR:
+			if is_in_game_board:
+				dragged_child.hide()
+			else:
+				dragged_child.show()
 		else:
-			dragged_child.show()
+			if is_in_game_board:
+				_stop_drag(event)
+			
+			
+func get_slot_position(index):
+	# Compute and return the global position for a slot by index
+	var slot = card_placement.get_node("Slot" + str(index))
+	return slot.global_position
 
 func _check_slot_placement(event):
-	nearest_slot_index = -1  # Reset global index each time
-	var cursor_position = event.global_position  # Get the current mouse position globally
+	var nearest_slot_index = -1
+	var cursor_position = event.global_position
 
-	for i in range(card_placement.get_child_count()):
-		var slot = card_placement.get_child(i)
-		var slot_rect = Rect2(slot.global_position - slot_size * 0.5, slot_size)  # Create a Rect2 centered on the slot
-
-		if slot_rect.has_point(cursor_position) and placed_cards[i] == null:
+	for i in range(NUM_SLOTS):
+		var slot = card_placement.get_node("Slot" + str(i))
+		var slot_rect = Rect2(slot.global_position - slot_size * 0.5, slot_size)
+		if slot_rect.has_point(cursor_position):
 			nearest_slot_index = i
-			break  # Exit the loop as we've found the nearest slot under cursor
+			break
 
-	if nearest_slot_index != -1:
-		placed_cards[nearest_slot_index] = dragged_child
-
-		# Align the center of the card with the center of the slot
-		dragged_child.global_position = card_placement.get_child(nearest_slot_index).global_position - dragged_child.size * 0.5
-		selector_activated = true  # Ensure card does not revert
-
-
+	if nearest_slot_index != -1 and dragged_child.card_data.action_type == GameData.ActionTypes.EFFECT:
+		emit_signal("request_place_board", dragged_child.card_data.id, nearest_slot_index)
+		dragged_child.queue_free()
+		selector_activated = true
+	
 func _attempt_start_drag(event):
-	# Check all children of the Hand container
 	for child in $Hand.get_children():
 		if child is Control:
 			var child_rect = Rect2(child.global_position, child.size)
@@ -105,17 +115,16 @@ func _attempt_start_drag(event):
 
 func _stop_drag(event):
 	if dragged_child:
-		if not selector_activated and nearest_slot_index == -1:  # Only add back if selector was not activated
-			dragged_child.show()  # Show again in case it was hidden
+		if not selector_activated:
+			dragged_child.show()
 			emit_signal('stop_drag_card')
-			
 			get_tree().root.remove_child(dragged_child)
 			original_parent.add_child(dragged_child)
 			original_parent.move_child(dragged_child, original_idx)
 			dragged_child.position = event.global_position - drag_offset
 		
 		dragged_child = null
-		selector_activated = false  # Reset the flag for the next operation
+		selector_activated = false
 
 func _handle_drag(event):
 	if dragged_child:

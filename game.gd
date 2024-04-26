@@ -19,11 +19,15 @@ func _ready():
 	add_child(selector)
 	
 	$PlayerField.connect('request_place_card', Callable(self, "_on_request_place_card"))
+	$PlayerField.connect('request_place_board', Callable(self, "_on_request_place_board"))
 	$PlayerField.connect('start_drag_card', Callable(selector, "_on_start_drag"))
 	$PlayerField.connect('stop_drag_card', Callable(selector, "_on_stop_drag"))
 	
 	choose_card_overlay.connect("card_choices_selected", Callable(self, "_on_card_choices_selected"))
 	
+func _on_request_place_board(card_id, slot_index):
+	rpc_id(1, "request_place_card", multiplayer.get_unique_id(), card_id, [], slot_index)
+
 func _on_request_place_card(card_id, corners):
 	rpc_id(1, "request_place_card", multiplayer.get_unique_id(), card_id, corners)
 	

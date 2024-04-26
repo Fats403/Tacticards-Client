@@ -207,7 +207,6 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="ChooseCardOverlay" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("8_25ahy")
 
 [node name="ColorRect" type="ColorRect" parent="ChooseCardOverlay"]
@@ -330,7 +329,7 @@ text = "0
 "
 horizontal_alignment = 1
 
-[node name="PlayerCardPlacement" type="Control" parent="PlayerField"]
+[node name="Board" type="Control" parent="PlayerField"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -2.0
@@ -338,19 +337,19 @@ offset_top = -4.0
 offset_right = 38.0
 offset_bottom = 36.0
 
-[node name="CardPlacement0" type="Sprite2D" parent="PlayerField/PlayerCardPlacement"]
+[node name="Slot0" type="Sprite2D" parent="PlayerField/Board"]
 position = Vector2(1208, 772)
 texture = ExtResource("14_n2dqv")
 
-[node name="CardPlacement1" type="Sprite2D" parent="PlayerField/PlayerCardPlacement"]
+[node name="Slot1" type="Sprite2D" parent="PlayerField/Board"]
 position = Vector2(1326, 772)
 texture = ExtResource("14_n2dqv")
 
-[node name="CardPlacement2" type="Sprite2D" parent="PlayerField/PlayerCardPlacement"]
+[node name="Slot2" type="Sprite2D" parent="PlayerField/Board"]
 position = Vector2(1445, 772)
 texture = ExtResource("14_n2dqv")
 
-[node name="CardPlacement3" type="Sprite2D" parent="PlayerField/PlayerCardPlacement"]
+[node name="Slot3" type="Sprite2D" parent="PlayerField/Board"]
 position = Vector2(1565, 772)
 texture = ExtResource("14_n2dqv")
 

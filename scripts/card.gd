@@ -14,10 +14,10 @@ func init(data, is_choice: bool = false):
 	
 	# Assuming you have child nodes with these names to display the data
 	$Title.text = card_data.title
-	$Description.text = "Test Description"
+	$Description.text = card_data.description
 	$GoldCost.text = str(data.gold_cost)
 	$EnergyCost.text = str(data.energy_cost)
-
+	
 func _gui_input(event):
 	if card_data:
 		if event is InputEventMouseButton:
