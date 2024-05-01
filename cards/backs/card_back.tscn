@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbm30r5ntxdcp"]
+
+[ext_resource type="Texture2D" uid="uid://b72up12pi510s" path="res://cards/backs/card_back_opponent.png" id="1_mouog"]
+
+[node name="CardBack" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 100.0
+offset_bottom = 130.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(49, 66)
+scale = Vector2(1.02128, 1)
+texture = ExtResource("1_mouog")

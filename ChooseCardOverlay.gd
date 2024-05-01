@@ -7,7 +7,16 @@ var max_choices = 3
 
 # TODO: Clear card choices, when new ones are set or when the layer is closed (hidden)
 
-func set_card_choices(choices):
+func set_card_choices(choices, num_choices = 3):
+	max_choices = num_choices
+	selected_cards = []
+	
+	$ChooseCardsButton.disabled = true
+	
+	# Clear previous choices
+	for child in $HBoxContainer.get_children():
+		child.queue_free()
+	
 	for choice in choices:
 		var card = load("res://cards/card.tscn").instantiate()
 		

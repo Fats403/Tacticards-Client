@@ -42,29 +42,33 @@ func client_set_initial_game_state(map, players_data):
 	GameData.grid_width = GameData.grid_size.x * GameData.tile_size
 	GameData.grid_height = GameData.grid_size.y * GameData.tile_size
 	
-	GameData.player = players_data.player
-	GameData.opponent = players_data.opponent
+	var player_data = players_data.player
+	var opponent_data = players_data.opponent
 	
-	health_bar_player.max_value = GameData.player.health
-	health_bar_player.value = GameData.player.health
+	health_bar_player.max_value = player_data.health
+	health_bar_player.value = player_data.health
 	
-	health_bar_opponent.max_value = GameData.opponent.health
-	health_bar_opponent.value = GameData.opponent.health
-	
-	$ChooseCardOverlay.set_card_choices(GameData.player.choices)
-	
+	health_bar_opponent.max_value = opponent_data.health
+	health_bar_opponent.value = opponent_data.health
+
+@rpc("reliable", "authority")
+func client_show_card_choices(choices, num_choices = 1):
+	$ChooseCardOverlay.set_card_choices(choices, num_choices)
+	$ChooseCardOverlay.show()
 
 @rpc("reliable", "authority")
 func client_update_player_state(player):
 	health_bar_player.value = player.health
-	
 	$PlayerField.set_player_data(player)
 
 @rpc("reliable", "authority")
 func client_update_opponent_state(opponent):
-	print(opponent)
-	GameData.opponent = opponent
 	health_bar_opponent.value = opponent.health
+	$OpponentField.set_opponent_data(opponent)
+
+@rpc("reliable", "authority")
+func client_reveal_opponent_board_state(board):
+	$OpponentField.reveal_board_state(board)
 			
 @rpc("reliable", "authority")
 func client_kill_creep(_id):

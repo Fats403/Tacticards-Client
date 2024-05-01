@@ -14,17 +14,19 @@ var original_idx = 0
 var last_dragged_card_id = null
 var selector_activated = false
 
-const NUM_SLOTS = 4
-var slot_size = Vector2(100, 130)
+var NUM_SLOTS = 4
 
 func set_player_data(data):
+	
+	NUM_SLOTS = data.board.size()
+	
 	# Clear only card nodes before adding new data
 	for child in $Board.get_children():
 		if not child.name.begins_with("Slot"):
-			child.queue_free() 
+			child.queue_free()
 
 	# Place new cards based on data from the server
-	for i in range(data.board.size()):
+	for i in range(NUM_SLOTS):
 		var card_data = data.board[i]
 		if card_data:
 			var card_node = load("res://cards/card.tscn").instantiate()
@@ -87,7 +89,7 @@ func _check_slot_placement(event):
 
 	for i in range(NUM_SLOTS):
 		var slot = card_placement.get_node("Slot" + str(i))
-		var slot_rect = Rect2(slot.global_position - slot_size * 0.5, slot_size)
+		var slot_rect = Rect2(slot.global_position - slot.size * 0.5, slot.size)
 		if slot_rect.has_point(cursor_position):
 			nearest_slot_index = i
 			break

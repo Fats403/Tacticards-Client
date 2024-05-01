@@ -14,9 +14,8 @@
 custom_minimum_size = Vector2(100, 130)
 layout_mode = 3
 anchors_preset = 0
-offset_top = -2.0
 offset_right = 100.0
-offset_bottom = 128.0
+offset_bottom = 130.0
 scale = Vector2(1.31463, 1.39851)
 mouse_filter = 1
 mouse_force_pass_scroll_events = false
@@ -24,7 +23,8 @@ mouse_default_cursor_shape = 2
 script = ExtResource("1_ascgc")
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(49.2393, 67.1451)
+position = Vector2(49.2393, 65.5376)
+scale = Vector2(1, 1.02572)
 texture = ExtResource("1_a32fg")
 
 [node name="DescriptionBg" type="Sprite2D" parent="."]
