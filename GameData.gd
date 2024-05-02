@@ -5,6 +5,9 @@ var half_tile_size = 8
 var grid_offset_x = 67
 var grid_offset_y = 64
 
+var allow_placement = false
+var slot_size = Vector2(100, 130)
+
 # Game globals
 var grid_size
 var grid_width

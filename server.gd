@@ -3,7 +3,6 @@ extends Node
 const DEFAULT_PORT = 8910
 const DEFAULT_IP = '127.0.0.1' #ec2-15-156-96-172.ca-central-1.compute.amazonaws.com'
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	multiplayer.connected_to_server.connect(_on_connected_to_server)
 	multiplayer.connection_failed.connect(_on_connection_failed)

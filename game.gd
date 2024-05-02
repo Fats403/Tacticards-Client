@@ -50,6 +50,8 @@ func client_set_initial_game_state(map, players_data):
 	
 	health_bar_opponent.max_value = opponent_data.health
 	health_bar_opponent.value = opponent_data.health
+	
+	GameData.allow_placement = true
 
 @rpc("reliable", "authority")
 func client_show_card_choices(choices, num_choices = 1):
@@ -69,6 +71,14 @@ func client_update_opponent_state(opponent):
 @rpc("reliable", "authority")
 func client_reveal_opponent_board_state(board):
 	$OpponentField.reveal_board_state(board)
+
+@rpc("reliable", "authority")
+func client_wave_started():
+	GameData.allow_placement = false
+
+@rpc("reliable", "authority")
+func client_wave_completed():
+	GameData.allow_placement = true
 			
 @rpc("reliable", "authority")
 func client_kill_creep(_id):

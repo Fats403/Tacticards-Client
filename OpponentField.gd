@@ -9,7 +9,6 @@ func set_opponent_data(data):
 	
 	print(data)
 	
-	# TODO: reverse so it shows mirrored?
 	for i in range(data.board.size()):
 		var card_data = data.board[i]
 		if card_data:
@@ -28,13 +27,6 @@ func set_opponent_data(data):
 	$DeckSize.text = str(data.deck_size)
 	$DiscardSize.text = str(data.discard_size)
 	$EnergyLabel.text = str(data.energy)
-
-func create_card():
-	var card_sprite = Sprite2D.new()
-	card_sprite.texture = card_texture
-	card_sprite.rotation = PI
-	
-	return card_sprite
 
 func clear_board_state():
 	# Clear only card nodes before adding new data

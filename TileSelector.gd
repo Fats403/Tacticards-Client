@@ -30,13 +30,14 @@ func _input(event):
 				if is_dragging and can_place:
 					update_position(mouse_pos)
 					emit_signal("selector_released", dragged_card_id, selector_corners)
-					self.visible = false  # Optionally hide selector after placing
+					self.visible = false
 					is_dragging = false
-				return  # Stop further processing by exiting the function
+				return
+				
 			if event.is_action_pressed("ui_cancel"):
 				self.visible = false
-				is_dragging = false  # Ensure dragging is reset
-				return  # Stop further processing by exiting the function
+				is_dragging = false
+				return
 
 func _process(delta):
 	var mouse_pos = get_viewport().get_mouse_position()
@@ -81,7 +82,7 @@ func check_tiles():
 func is_mouse_within_grid(mouse_pos):
 	if GameData.grid_size:
 		var grid_pos = mouse_pos - Vector2(GameData.grid_offset_x, GameData.grid_offset_y)
-		return grid_pos.x >= GameData.tile_size and grid_pos.y >= GameData.tile_size and grid_pos.x < GameData.grid_size.x * GameData.tile_size - GameData.tile_size and grid_pos.y < GameData.grid_size.y * GameData.tile_size - GameData.tile_size
+		return grid_pos.x >= GameData.tile_size and grid_pos.y >= GameData.tile_size and grid_pos.x < GameData.grid_size.x * GameData.tile_size and grid_pos.y < GameData.grid_size.y * GameData.tile_size
 
 func update_selector_corners():
 	var base_pos = (position - selector_half_size - Vector2(GameData.grid_offset_x, GameData.grid_offset_y)) / GameData.tile_size

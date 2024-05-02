@@ -23,12 +23,12 @@ mouse_default_cursor_shape = 2
 script = ExtResource("1_ascgc")
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(49.2393, 65.5376)
+position = Vector2(50, 65)
 scale = Vector2(1, 1.02572)
 texture = ExtResource("1_a32fg")
 
 [node name="DescriptionBg" type="Sprite2D" parent="."]
-position = Vector2(50.2393, 112.948)
+position = Vector2(51.7606, 112.948)
 scale = Vector2(1, 1.0829)
 texture = ExtResource("2_kmmkv")
 
@@ -53,9 +53,9 @@ texture = ExtResource("6_8vt1n")
 
 [node name="Description" type="Label" parent="."]
 layout_mode = 0
-offset_left = 2.56402
+offset_left = 3.32469
 offset_top = 98.5752
-offset_right = 98.564
+offset_right = 99.3247
 offset_bottom = 127.575
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)

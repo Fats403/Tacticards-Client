@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b72up12pi510s" path="res://cards/backs/card_back_opponent.png" id="1_mouog"]
 
 [node name="CardBack" type="Control"]
+custom_minimum_size = Vector2(100, 130)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 100.0
@@ -11,6 +12,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(49, 66)
+position = Vector2(50, 65)
 scale = Vector2(1.02128, 1)
 texture = ExtResource("1_mouog")

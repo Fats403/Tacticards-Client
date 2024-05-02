@@ -68,6 +68,7 @@ func _input(event):
 	
 	if dragged_child:
 		var is_in_game_board = dragged_child.global_position.x <= ((GameData.grid_offset_x * 2) + GameData.grid_width)
+		
 		if dragged_child.card_data.action_type == GameData.ActionTypes.SELECTOR:
 			if is_in_game_board:
 				dragged_child.hide()
@@ -76,7 +77,6 @@ func _input(event):
 		else:
 			if is_in_game_board:
 				_stop_drag(event)
-			
 			
 func get_slot_position(index):
 	# Compute and return the global position for a slot by index
@@ -89,34 +89,37 @@ func _check_slot_placement(event):
 
 	for i in range(NUM_SLOTS):
 		var slot = card_placement.get_node("Slot" + str(i))
-		var slot_rect = Rect2(slot.global_position - slot.size * 0.5, slot.size)
+		var slot_rect = Rect2(slot.global_position - GameData.slot_size * 0.5, GameData.slot_size)
 		if slot_rect.has_point(cursor_position):
 			nearest_slot_index = i
 			break
-
-	if nearest_slot_index != -1 and dragged_child.card_data.action_type == GameData.ActionTypes.EFFECT:
-		emit_signal("request_place_board", dragged_child.card_data.id, nearest_slot_index)
-		dragged_child.queue_free()
-		selector_activated = true
+	
+	if GameData.allow_placement:
+		if nearest_slot_index != -1 and dragged_child.card_data.action_type == GameData.ActionTypes.EFFECT:
+			emit_signal("request_place_board", dragged_child.card_data.id, nearest_slot_index)
+			dragged_child.queue_free()
+			selector_activated = true
 	
 func _attempt_start_drag(event):
-	for child in $Hand.get_children():
-		if child is Control:
-			var child_rect = Rect2(child.global_position, child.size)
-			if child_rect.has_point(event.global_position):
-				dragged_child = child
-				last_dragged_card_id = child.card_data.id
-				original_parent = child.get_parent()
-				original_idx = original_parent.get_index()
-				drag_offset = event.global_position - child.global_position
-				original_parent.remove_child(child)
-				get_tree().root.add_child(child)
-				child.global_position = event.global_position - drag_offset
-				emit_signal('start_drag_card', last_dragged_card_id)
-				break
+	if GameData.allow_placement:
+		for child in $Hand.get_children():
+			if child is Control:
+				var child_rect = Rect2(child.global_position, child.size)
+				if child_rect.has_point(event.global_position):
+					dragged_child = child
+					last_dragged_card_id = child.card_data.id
+					original_parent = child.get_parent()
+					original_idx = original_parent.get_index()
+					drag_offset = event.global_position - child.global_position
+					original_parent.remove_child(child)
+					get_tree().root.add_child(child)
+					child.global_position = event.global_position - drag_offset
+					emit_signal('start_drag_card', last_dragged_card_id)
+					break
 
 func _stop_drag(event):
 	if dragged_child:
+		
 		if not selector_activated:
 			dragged_child.show()
 			emit_signal('stop_drag_card')
@@ -126,7 +129,8 @@ func _stop_drag(event):
 			dragged_child.position = event.global_position - drag_offset
 		
 		dragged_child = null
-		selector_activated = false
+	
+	selector_activated = false
 
 func _handle_drag(event):
 	if dragged_child:
